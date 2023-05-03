@@ -1,4 +1,4 @@
-package com.reactnativestarter;
+package com.powergate.reactnativestarter;
 
 
 import android.app.Application;

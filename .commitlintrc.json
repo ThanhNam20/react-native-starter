@@ -18,7 +18,8 @@
         "style",
         "test",
         "create",
-        "init"
+        "init",
+        "update"
       ]
     ]
   }

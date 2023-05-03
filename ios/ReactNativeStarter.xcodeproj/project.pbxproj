@@ -530,7 +530,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.reactnativestarter";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.powergate.reactnativestarter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactNativeStarter.app/ReactNativeStarter";
 			};
@@ -554,7 +554,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.reactnativestarter";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.powergate.reactnativestarter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactNativeStarter.app/ReactNativeStarter";
 			};
@@ -580,7 +580,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.reactnativestarter";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.powergate.reactnativestarter";
 				PRODUCT_NAME = "ReactNativeStarter";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -607,7 +607,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.reactnativestarter";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.powergate.reactnativestarter";
 				PRODUCT_NAME = "ReactNativeStarter";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
