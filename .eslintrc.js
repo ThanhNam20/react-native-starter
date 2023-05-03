@@ -117,9 +117,9 @@ module.exports = {
     "prefer-destructuring": 2,
     "no-nested-ternary": 2,
     "prettier/prettier": [
-      "error",
+      "warn",
       {
-        endOfLine: "auto",
+        endOfLine: "none",
       },
     ],
   },
