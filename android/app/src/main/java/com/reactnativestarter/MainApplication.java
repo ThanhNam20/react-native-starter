@@ -1,4 +1,4 @@
-package com.rntypescriptboilerplate;
+package com.reactnativestarter;
 
 
 import android.app.Application;
