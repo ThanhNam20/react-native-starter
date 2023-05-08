@@ -9,8 +9,6 @@ import Navigation from "./src/navigation";
 import { isAndroid } from "@freakycoder/react-native-helpers";
 import { AppProvider } from "contexts/app.context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {API_URL} from "@env";
-
 
 LogBox.ignoreAllLogs();
 const queryClient = new QueryClient();

@@ -1,11 +1,11 @@
+import { API_URL } from "@env";
 import axios, { AxiosError, AxiosInstance } from "axios";
-
 class Http {
   instance: AxiosInstance;
   private accessToken: string | undefined
   constructor() {
     this.instance = axios.create({
-      baseURL: "https://rebates.com/",
+      baseURL: API_URL,
       timeout: 10000,
       headers: {
         "Content-Type": "application/json"
