@@ -40,7 +40,8 @@
       "@utils": ["./utils/"],
       "@assets": ["./assets/"],
       "@local-storage": ["./services/local-storage"]
-    }
+    },
+    "typeRoots": ["./src/types"]
   },
   "extends": "@tsconfig/react-native/tsconfig.json",
   "exclude": [
