@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import { FlatList, Image, View } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import Icon, { IconType } from "react-native-dynamic-vector-icons";
@@ -14,9 +14,13 @@ import CardItem from "./components/card-item/CardItem";
 /**
  * ? Shared Imports
  */
-import { SCREENS } from "@shared-constants";
+import { REACT_QUERY_KEY, SCREENS } from "@shared-constants";
 import Text from "@shared-components/text-wrapper/TextWrapper";
 import fonts from "@fonts";
+import { AppContext } from "contexts/app.context";
+import { asyncStorage } from "utils/storage";
+import { useQuery } from "@tanstack/react-query";
+import { getExtensionConfig } from "@services/apis/common.api";
 
 const profileURI =
   // eslint-disable-next-line max-len
@@ -25,6 +29,14 @@ const profileURI =
 interface HomeScreenProps {}
 
 const HomeScreen: React.FC<HomeScreenProps> = () => {
+  
+  const { data } = useQuery({
+    queryKey: [REACT_QUERY_KEY.EXTENSION_CONFIG],
+    queryFn: getExtensionConfig,
+  });
+
+  // const { profile } = useContext(AppContext);
+
   const theme = useTheme();
   const { colors } = theme;
   const styles = useMemo(() => createStyles(theme), [theme]);

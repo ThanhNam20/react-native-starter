@@ -1,11 +1,11 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosError, AxiosInstance } from "axios";
 
 class Http {
   instance: AxiosInstance;
   private accessToken: string | undefined
   constructor() {
     this.instance = axios.create({
-      baseURL: "https://api-ecom.duthanhduoc.com/",
+      baseURL: "https://rebates.com/",
       timeout: 10000,
       headers: {
         "Content-Type": "application/json"
@@ -20,7 +20,7 @@ class Http {
         }
         return config
       },
-      (error) => {
+      (error: AxiosError) => {
         return Promise.reject(error)
       }
     )

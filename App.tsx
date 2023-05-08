@@ -7,8 +7,11 @@ import SplashScreen from "react-native-splash-screen";
  */
 import Navigation from "./src/navigation";
 import { isAndroid } from "@freakycoder/react-native-helpers";
+import { AppProvider } from "contexts/app.context";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 LogBox.ignoreAllLogs();
+const queryClient = new QueryClient();
 
 const App = () => {
   const scheme = useColorScheme();
@@ -28,7 +31,11 @@ const App = () => {
 
   return (
     <>
-      <Navigation />
+      <QueryClientProvider client={queryClient}>
+        <AppProvider>
+          <Navigation />
+        </AppProvider>
+      </QueryClientProvider>
     </>
   );
 };
