@@ -7,7 +7,8 @@ export const SCREENS = {
   DETAIL: "Detail",
   LOGIN: 'Login',
   REGISTER: 'Register',
-  DRAWER: 'Drawer'
+  DRAWER: 'Drawer',
+  BOTTOM: 'Bottom'
 };
 
 

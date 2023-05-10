@@ -26,10 +26,11 @@ const profileURI =
   // eslint-disable-next-line max-len
   "https://images.unsplash.com/photo-1544568100-847a948585b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80";
 
-interface HomeScreenProps {}
+interface HomeScreenProps {
+  navigation: any;
+}
 
-const HomeScreen: React.FC<HomeScreenProps> = () => {
-  
+const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const { data } = useQuery({
     queryKey: [REACT_QUERY_KEY.EXTENSION_CONFIG],
     queryFn: getExtensionConfig,
@@ -45,12 +46,16 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
     NavigationService.push(SCREENS.DETAIL);
   };
 
+  const handleOpenDrawer = () => {
+    navigation.toggleDrawer()
+  };
+
   /* -------------------------------------------------------------------------- */
   /*                               Render Methods                               */
   /* -------------------------------------------------------------------------- */
 
   const MenuButton = () => (
-    <RNBounceable>
+    <RNBounceable onPress={handleOpenDrawer}>
       <Icon
         name="menu"
         type={IconType.Ionicons}

@@ -19,11 +19,12 @@ const Login = () => {
   });
 
   const handleSubmitButton = () => {
-    NavigationService.push(SCREENS.HOME);
+    NavigationService.push(SCREENS.DRAWER);
   };
 
   const submitLogin = handleSubmit((data) => {
     console.log(data);
+    handleSubmitButton();
   });
 
   return (

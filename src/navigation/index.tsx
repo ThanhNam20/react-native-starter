@@ -19,9 +19,9 @@ import NotificationScreen from "@screens/notification/NotificationScreen";
 import Login from "@screens/login";
 import Register from "@screens/register";
 import DrawerNavigation from "./DrawerNavigation";
-import Modal from "@screens/modal";
+import BottomTabNavigation from "./BottomTabNavigation";
+
 // ? If you want to use stack or tab or both
-const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const Navigation = () => {
@@ -32,65 +32,6 @@ const Navigation = () => {
     return () => (isReadyRef.current = false);
   }, []);
 
-  const renderTabIcon = (
-    route: any,
-    focused: boolean,
-    color: string,
-    size: number,
-  ) => {
-    let iconName = "home";
-    switch (route.name) {
-      case SCREENS.HOME:
-        iconName = focused ? "home" : "home-outline";
-        break;
-      case SCREENS.SEARCH:
-        iconName = focused ? "search" : "search-outline";
-        break;
-      case SCREENS.NOTIFICATION:
-        iconName = focused ? "notifications" : "notifications-outline";
-        break;
-      case SCREENS.PROFILE:
-        iconName = focused ? "person" : "person-outline";
-        break;
-      default:
-        iconName = focused ? "home" : "home-outline";
-        break;
-    }
-    return (
-      <Icon
-        name={iconName}
-        type={IconType.Ionicons}
-        size={size}
-        color={color}
-      />
-    );
-  };
-
-  const renderTabNavigation = () => {
-    return (
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          headerShown: false,
-          tabBarIcon: ({ focused, color, size }) =>
-            renderTabIcon(route, focused, color, size),
-          tabBarActiveTintColor: palette.primary,
-          tabBarInactiveTintColor: "gray",
-          tabBarStyle: {
-            backgroundColor: isDarkMode ? palette.black : palette.white,
-          },
-        })}
-      >
-        <Tab.Screen name={SCREENS.HOME} component={HomeScreen} />
-        <Tab.Screen name={SCREENS.SEARCH} component={SearchScreen} />
-        <Tab.Screen
-          name={SCREENS.NOTIFICATION}
-          component={NotificationScreen}
-        />
-        <Tab.Screen name={SCREENS.PROFILE} component={ProfileScreen} />
-      </Tab.Navigator>
-    );
-  };
-
   return (
     <NavigationContainer
       ref={navigationRef}
@@ -100,13 +41,9 @@ const Navigation = () => {
       theme={isDarkMode ? DarkTheme : LightTheme}
     >
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name={SCREENS.DRAWER} component={DrawerNavigation} />
         <Stack.Screen name={SCREENS.LOGIN} component={Login} />
         <Stack.Screen name={SCREENS.REGISTER} component={Register} />
-        <Stack.Screen name={SCREENS.DETAIL}>
-          {(props) => <DetailScreen {...props} />}
-        </Stack.Screen>
-        <Stack.Screen name={SCREENS.HOME} component={renderTabNavigation} />
+        <Stack.Screen name={SCREENS.DRAWER} component={DrawerNavigation} />
       </Stack.Navigator>
     </NavigationContainer>
   );
