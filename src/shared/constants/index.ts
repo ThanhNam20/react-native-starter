@@ -5,6 +5,9 @@ export const SCREENS = {
   NOTIFICATION: "Notification",
   PROFILE: "Profile",
   DETAIL: "Detail",
+  LOGIN: 'Login',
+  REGISTER: 'Register',
+  DRAWER: 'Drawer'
 };
 
 

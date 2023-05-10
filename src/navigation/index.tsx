@@ -16,7 +16,10 @@ import SearchScreen from "@screens/search/SearchScreen";
 import DetailScreen from "@screens/detail/DetailScreen";
 import ProfileScreen from "@screens/profile/ProfileScreen";
 import NotificationScreen from "@screens/notification/NotificationScreen";
-
+import Login from "@screens/login";
+import Register from "@screens/register";
+import DrawerNavigation from "./DrawerNavigation";
+import Modal from "@screens/modal";
 // ? If you want to use stack or tab or both
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -97,10 +100,13 @@ const Navigation = () => {
       theme={isDarkMode ? DarkTheme : LightTheme}
     >
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name={SCREENS.HOME} component={renderTabNavigation} />
+        <Stack.Screen name={SCREENS.DRAWER} component={DrawerNavigation} />
+        <Stack.Screen name={SCREENS.LOGIN} component={Login} />
+        <Stack.Screen name={SCREENS.REGISTER} component={Register} />
         <Stack.Screen name={SCREENS.DETAIL}>
           {(props) => <DetailScreen {...props} />}
         </Stack.Screen>
+        <Stack.Screen name={SCREENS.HOME} component={renderTabNavigation} />
       </Stack.Navigator>
     </NavigationContainer>
   );
