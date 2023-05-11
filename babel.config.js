@@ -8,6 +8,7 @@ module.exports = {
       {
         moduleName: "@env",
         path: ".env",
+        safe: true
       },
     ]
   ],

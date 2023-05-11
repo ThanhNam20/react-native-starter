@@ -34,7 +34,7 @@ const Register = () => {
               classNameInput="w-full bg-white border border-slate-200 rounded-md h-12 px-2"
               errorMessage={errors.fname?.message}
               classNameError="text-red-500"
-              placeholder="Enter First Name"
+              placeholder="First Name"
               value={field.value}
               onChangeText={field.onChange}
             />
@@ -49,7 +49,7 @@ const Register = () => {
               classNameInput="w-full bg-white border border-slate-200 rounded-md h-12 px-2"
               errorMessage={errors.lname?.message}
               classNameError="text-red-500"
-              placeholder="Enter Last Name"
+              placeholder="Last Name"
               value={field.value}
               onChangeText={field.onChange}
             />

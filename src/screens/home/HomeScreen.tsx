@@ -1,26 +1,26 @@
-import React, { useContext, useEffect, useMemo } from "react";
-import { FlatList, Image, View } from "react-native";
+import RNBounceable from "@freakycoder/react-native-bounceable";
 import { useTheme } from "@react-navigation/native";
+import React, { useMemo } from "react";
+import { FlatList, Image, View } from "react-native";
 import Icon, { IconType } from "react-native-dynamic-vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as NavigationService from "react-navigation-helpers";
-import RNBounceable from "@freakycoder/react-native-bounceable";
 /**
  * ? Local Imports
  */
 import createStyles from "./HomeScreen.style";
-import MockData from "./mock/MockData";
 import CardItem from "./components/card-item/CardItem";
+import MockData from "./mock/MockData";
 /**
  * ? Shared Imports
  */
-import { REACT_QUERY_KEY, SCREENS } from "@shared-constants";
-import Text from "@shared-components/text-wrapper/TextWrapper";
 import fonts from "@fonts";
-import { AppContext } from "contexts/app.context";
-import { asyncStorage } from "utils/storage";
-import { useQuery } from "@tanstack/react-query";
 import { getExtensionConfig } from "@services/apis/common.api";
+import Text from "@shared-components/text-wrapper/TextWrapper";
+import { REACT_QUERY_KEY, SCREENS } from "@shared-constants";
+import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const profileURI =
   // eslint-disable-next-line max-len
@@ -38,6 +38,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
 
   // const { profile } = useContext(AppContext);
 
+  const { t, i18n } = useTranslation("home")
   const theme = useTheme();
   const { colors } = theme;
   const styles = useMemo(() => createStyles(theme), [theme]);
@@ -46,8 +47,12 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     NavigationService.push(SCREENS.DETAIL);
   };
 
+  const handleChangeLanguage = (lang: string) => {
+    i18n.changeLanguage(lang);
+  };
+
   const handleOpenDrawer = () => {
-    navigation.toggleDrawer()
+    navigation.toggleDrawer();
   };
 
   /* -------------------------------------------------------------------------- */
@@ -90,7 +95,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const Welcome = () => (
     <>
       <Text h1 bold color={colors.text}>
-        Hello Kuray
+        {t('helloUser', { name: '12312312'})}
       </Text>
       <Text
         fontFamily={fonts.montserrat.lightItalic}

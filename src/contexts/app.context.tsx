@@ -6,11 +6,11 @@ interface AppContextInterface {
   isAuthenticated: boolean;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   profile: User | null;
-  setProfile: React.Dispatch<React.SetStateAction<User | null>>
+  setProfile: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
 const initialAppContext: AppContextInterface = {
-  isAuthenticated: false,
+  isAuthenticated: Boolean(asyncStorage.getValue("access_token")),
   setIsAuthenticated: () => null,
   profile: null,
   setProfile: () => null,
@@ -30,7 +30,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         isAuthenticated,
         setIsAuthenticated,
         profile,
-        setProfile
+        setProfile,
       }}
     >
       {children}

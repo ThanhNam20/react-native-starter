@@ -1,4 +1,11 @@
-import { View, Text, SafeAreaView, Pressable, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Pressable,
+  TextInput,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SCREENS } from "@shared-constants";
@@ -7,13 +14,14 @@ import { Controller, useForm } from "react-hook-form";
 import Input from "@shared-components/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema, loginSchema } from "utils/schema";
+import { useMutation } from "@tanstack/react-query";
+import { authApi } from "@services/apis/auth.api";
 
 const Login = () => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm<LoginSchema>({
     resolver: yupResolver(loginSchema),
   });
@@ -22,16 +30,28 @@ const Login = () => {
     NavigationService.push(SCREENS.DRAWER);
   };
 
+  const loginMutation = useMutation({
+    mutationFn: authApi.login
+  });
+
   const submitLogin = handleSubmit((data) => {
-    console.log(data);
-    handleSubmitButton();
+    loginMutation.mutate(data, {
+      onSuccess(response) {
+        console.log(response);
+      },
+    });
   });
 
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-slate-50">
+      {loginMutation.isLoading && (
+        <View>
+          <ActivityIndicator />
+        </View>
+      )}
+
       <View className="p-8 w-full max-w-sm">
         <Text className="text-5xl font-bold mb-6 text-slate-900">Login</Text>
-
         <Controller
           control={control}
           name="email"
@@ -63,8 +83,6 @@ const Login = () => {
           )}
         />
 
-        
-
         <View className="flex flex-row justify-between items-center my-8">
           <View className="flex-row items-center">
             <Pressable className="bg-white border border-slate-200 h-6 w-6 rounded-sm mr-2 flex items-center justify-center">
@@ -79,7 +97,7 @@ const Login = () => {
         </View>
 
         <Pressable
-          onPress={submitLogin}
+          onPress={handleSubmitButton}
           className="h-12 bg-purple-500 rounded-md flex flex-row justify-center items-center px-6"
         >
           <View className="flex-1 flex items-center">
