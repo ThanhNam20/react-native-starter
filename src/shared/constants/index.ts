@@ -15,3 +15,8 @@ export const SCREENS = {
 export const REACT_QUERY_KEY = {
   EXTENSION_CONFIG: 'EXTENSION_CONFIG'
 }
+
+export const STORAGE_KEY = {
+   ACCESS_TOKEN: 'access_token',
+   PROFILE: 'profile'
+}

@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { STORAGE_KEY } from "@shared-constants";
+import { createContext, useEffect, useState } from "react";
 import { User } from "types/user.type";
 import { asyncStorage } from "utils/storage";
 
@@ -10,7 +11,7 @@ interface AppContextInterface {
 }
 
 const initialAppContext: AppContextInterface = {
-  isAuthenticated: Boolean(asyncStorage.getValue("access_token")),
+  isAuthenticated: Boolean(null),
   setIsAuthenticated: () => null,
   profile: null,
   setProfile: () => null,
@@ -24,6 +25,16 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [profile, setProfile] = useState<User | null>(
     initialAppContext.profile,
   );
+
+  const checkAuthentication = async () => {
+    const accessToken = await asyncStorage.getValue(STORAGE_KEY.ACCESS_TOKEN);
+    setIsAuthenticated(Boolean(accessToken));
+  };
+
+  useEffect(() => {
+    checkAuthentication();
+  }, []);
+
   return (
     <AppContext.Provider
       value={{

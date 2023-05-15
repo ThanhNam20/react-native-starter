@@ -20,7 +20,6 @@ import Text from "@shared-components/text-wrapper/TextWrapper";
 import { REACT_QUERY_KEY, SCREENS } from "@shared-constants";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import i18next from "i18next";
 
 const profileURI =
   // eslint-disable-next-line max-len
@@ -31,10 +30,10 @@ interface HomeScreenProps {
 }
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
-  const { data } = useQuery({
-    queryKey: [REACT_QUERY_KEY.EXTENSION_CONFIG],
-    queryFn: getExtensionConfig,
-  });
+  // const { data } = useQuery({
+  //   queryKey: [REACT_QUERY_KEY.EXTENSION_CONFIG],
+  //   queryFn: getExtensionConfig,
+  // });
 
   // const { profile } = useContext(AppContext);
 
@@ -95,7 +94,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const Welcome = () => (
     <>
       <Text h1 bold color={colors.text}>
-        {t('helloUser', { name: '12312312'})}
+        {t('helloUser', { name: '112'})}
       </Text>
       <Text
         fontFamily={fonts.montserrat.lightItalic}

@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type StringValue = string | null;
-type Key = 'access_token' | 'profile';
+type Key = string;
 
 async function getValue(key: Key): Promise<StringValue> {
   try {
@@ -15,7 +15,7 @@ async function getValue(key: Key): Promise<StringValue> {
 
 async function setValue(key: Key, value: StringValue): Promise<void> {
   try {
-    await AsyncStorage.setItem(key, value as string);
+    await AsyncStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
     console.error(`Error setting value for key "${key}"`, error);
   }

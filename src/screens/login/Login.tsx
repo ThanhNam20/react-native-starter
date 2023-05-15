@@ -5,10 +5,10 @@ import {
   Pressable,
   TextInput,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
-import React from "react";
-import { useNavigation } from "@react-navigation/native";
-import { SCREENS } from "@shared-constants";
+import React, { useContext } from "react";
+import { SCREENS, STORAGE_KEY } from "@shared-constants";
 import * as NavigationService from "react-navigation-helpers";
 import { Controller, useForm } from "react-hook-form";
 import Input from "@shared-components/Input";
@@ -16,8 +16,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema, loginSchema } from "utils/schema";
 import { useMutation } from "@tanstack/react-query";
 import { authApi } from "@services/apis/auth.api";
+import { AppContext } from "contexts/app.context";
+import { asyncStorage } from "utils/storage";
 
 const Login = () => {
+  const { setIsAuthenticated } = useContext(AppContext);
   const {
     control,
     handleSubmit,
@@ -31,13 +34,17 @@ const Login = () => {
   };
 
   const loginMutation = useMutation({
-    mutationFn: authApi.login
+    mutationFn: authApi.login,
   });
 
   const submitLogin = handleSubmit((data) => {
     loginMutation.mutate(data, {
       onSuccess(response) {
         console.log(response);
+        asyncStorage.setValue(STORAGE_KEY.ACCESS_TOKEN, response.data.data.access_token)
+        asyncStorage.setValue(STORAGE_KEY.PROFILE, response.data.data.user)
+        setIsAuthenticated(true);
+        handleSubmitButton();
       },
     });
   });
@@ -97,7 +104,7 @@ const Login = () => {
         </View>
 
         <Pressable
-          onPress={handleSubmitButton}
+          onPress={submitLogin}
           className="h-12 bg-purple-500 rounded-md flex flex-row justify-center items-center px-6"
         >
           <View className="flex-1 flex items-center">
